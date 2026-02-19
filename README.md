@@ -2,6 +2,8 @@
 
 A production-ready, lightweight Human Resource Management System for a single admin user.
 
+Url: https://hrms-hkydchgk9-keshavs-9306s-projects.vercel.app/
+
 ## What has been implemented
 The following features and configurations have been successfully implemented:
 
@@ -22,80 +24,7 @@ The following features and configurations have been successfully implemented:
     - **Dashboard**: Real-time summary statistics of the workforce.
     - **Bonus Features**: Date filtering for attendance and "Present Days" counter per employee.
 
----
 
-## How to Run Locally
-
-### 1. Backend
-#### PostgreSQL Setup (Windows)
-1. **Download & Install**: Download the PostgreSQL installer from [postgresql.org](https://www.postgresql.org/download/windows/) and install it.
-2. **Create Database**:
-   - Open **pgAdmin 4** or use the **SQL Shell (psql)**.
-   - Run the following command to create the database:
-     ```sql
-     CREATE DATABASE hrms_db;
-     ```
-3. **Update .env**: Create a `.env` file in the `backend/` directory and set your credentials:
-   ```env
-   DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@localhost:5432/hrms_db
-   ```
-
-#### Local Run
-```bash
-python -m venv venv
-# Windows (Git Bash/Bash):
-source venv/Scripts/activate
-# Windows (PowerShell):
-.\venv\Scripts\Activate.ps1
-
-pip install -r requirements.txt
-uvicorn app.main:app --host 0.0.0.0 --port 10000 --reload
-```
-
-### 2. Frontend
-```bash
-cd frontend
-npm install
-# Create .env and add: VITE_API_URL=http://localhost:10000
-npm run dev
-```
-
----
-
-## How to Run Tests
-
-### Backend Tests
-The backend includes a suite of integration tests using `pytest` and an in-memory SQLite database for isolation.
-
-```bash
-cd backend
-# Run with PYTHONPATH set to current directory
-PYTHONPATH=. pytest tests/test_api.py
-# OR use python module mode:
-python -m pytest tests/test_api.py
-```
-*Note: Ensure you have installed the requirements, including `pytest` and `httpx`.*
-
-### Frontend Verification
-Manual verification is performed via the development server. Ensure the backend is running before testing the frontend flows.
-
----
-
-## How to Deploy
-
-### Backend (Render / Heroku / DigitalOcean)
-1. **Prepare Environment**: Set `DATABASE_URL` in your provider's dashboard.
-2. **Build Configuration**: Use the provided `Dockerfile` or run:
-   - Build Command: `pip install -r requirements.txt`
-   - Start Command: `uvicorn app.main:app --host 0.0.0.0 --port 10000`
-3. **Internal Port**: Ensure the service listens on port `10000`.
-
-### Frontend (Vercel / Netlify)
-1. **Connect Repository**: Point to the `frontend/` directory.
-2. **Build Settings**:
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-3. **Environment Variable**: Set `VITE_API_URL` to the URL of your deployed backend.
 
 ---
 
@@ -104,3 +33,6 @@ Manual verification is performed via the development server. Ensure the backend 
 - **DB**: PostgreSQL (Production), SQLite (Testing)
 - **Styling**: Vanilla CSS (Custom tokens)
 - **Validation**: Pydantic v2
+
+
+Note: Backend is hosted on Render free tier and may take 20–30 seconds to wake after inactivity.
